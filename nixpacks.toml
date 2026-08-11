@@ -1,0 +1,5 @@
+[phases.setup]
+nixPkgs = ["php", "phpExtensions.curl", "phpExtensions.mysqli"]
+
+[phases.start]
+cmd = "vendor/bin/heroku-php-apache2 ."
