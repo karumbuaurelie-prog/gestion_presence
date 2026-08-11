@@ -6,18 +6,14 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
     $_SERVER['HTTPS'] = 'on';
 }
 
-include 'connexion.php';
-
-echo "Session: ";
-var_dump($_SESSION); // POUR VOIR CE QU'IL Y A DANS LA SESSION
-echo "<br><a href='dashboard.php'>Aller au Dashboard</a>";
+echo "<h1>ÇA MARCHE !!!</h1>";
+echo "<p>Si tu vois ce message, PHP fonctionne sur Railway</p>";
 ?>
 <html>
 <body>
-<h1>PAGE LOGIN TEST</h1>
 <form method="POST">
-<input name="username" placeholder="username">
-<input name="password" type="password" placeholder="password">
+<input name="username" placeholder="test">
+<input name="password" type="password" placeholder="test">
 <button name="connexion">Se connecter</button>
 </form>
 </body>
