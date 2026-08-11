@@ -1,12 +1,13 @@
 <?php
-$serveur = "localhost";
-$utilisateur = "root";
-$motdepasse = "";
-$basededonnees = "gestion_presence";
+$host = $_ENV['MYSQLHOST'];
+$user = $_ENV['MYSQLUSER'];
+$pass = $_ENV['MYSQLPASSWORD'];
+$db   = $_ENV['MYSQLDATABASE'];
+$port = $_ENV['MYSQLPORT'];
 
-$conn = mysqli_connect($serveur, $utilisateur, $motdepasse, $basededonnees);
+$conn = new mysqli($host, $user, $pass, $db, $port);
 
-if (!$conn) {
-    die("Erreur de connexion : " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Connexion échouée: " . $conn->connect_error);
 }
 ?>
