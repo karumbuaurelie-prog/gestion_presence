@@ -1,7 +1,20 @@
 <?php
 session_start();
+
+// FIX POUR RAILWAY HTTPS - NE PAS SUPPRIMER
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+    $_SERVER['HTTPS'] = 'on';
+}
+
 include 'connexion.php';
 
+// SI DEJA CONNECTE, ON VA DIRECT AU DASHBOARD
+if(isset($_SESSION['username'])){
+    header("Location: dashboard.php");
+    exit();
+}
+
+// TRAITEMENT DU FORMULAIRE
 if (isset($_POST['connexion'])) {
 
     $username = $_POST['username'];
@@ -113,8 +126,6 @@ if (isset($_POST['connexion'])) {
 </div>
 
 <button type="submit" name="connexion" class="btn">Se connecter</button>
-
-</form>
 
 </form>
 
