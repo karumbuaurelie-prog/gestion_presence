@@ -1,5 +1,8 @@
 [phases.setup]
-nixPkgs = ["php", "phpExtensions.curl", "phpExtensions.mysqli"]
+nixPkgs = ["php", "phpPackages.mysqli"]
 
-[phases.start]
-cmd = "vendor/bin/heroku-php-apache2 ."
+[phases.install]
+cmds = []
+
+[start]
+cmd = "php -S 0.0.0.0:$PORT -t ."
