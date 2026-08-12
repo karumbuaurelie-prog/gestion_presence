@@ -7,3 +7,4 @@ RUN a2enmod mpm_prefork
 COPY . /var/www/html/
 
 EXPOSE 80
+
