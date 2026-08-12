@@ -1,1 +1,5 @@
+[phases.install]
+cmds = ["docker-php-ext-install mysqli pdo pdo_mysql"]
 
+[phases.start]
+cmd = "apache2-foreground"
