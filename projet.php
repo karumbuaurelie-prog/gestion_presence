@@ -1,4 +1,8 @@
 <?php
+// POUR RAILWAY HTTPS - OBLIGATOIRE
+ini_set('session.cookie_secure', 1);
+ini_set('session.cookie_samesite', 'None');
+
 session_start();
 include 'connexion.php';
 
@@ -19,7 +23,6 @@ if (isset($_POST['connexion'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // J'AI MIS "?" POUR SÉCURISER CONTRE LES HACKERS
     $stmt = $conn->prepare("SELECT id FROM utilisateurs WHERE nom_utilisateur = ? AND mot_de_passe = ?");
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
@@ -27,7 +30,7 @@ if (isset($_POST['connexion'])) {
 
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
-        $_SESSION['user_id']= $user['id']; // J'AI MIS ID AU LIEU DU NOM
+        $_SESSION['user_id']= $user['id']; 
         $_SESSION['username']= $username;
         header("Location: dashboard.php");
         exit();
