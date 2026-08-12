@@ -10,13 +10,13 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
     $_SERVER['HTTPS'] = 'on';
 }
 
-// SI PAS CONNECTE, ON RETOURNE AU LOGIN
-if (!isset($_SESSION['user_id'])) {
-    header("Location: projet.php");  // <-- ICI J'AI MIS projet.php
-    exit();
-}
+// TEMPORAIRE : ON ENLEVE LA VERIF POUR TESTER
+// if (!isset($_SESSION['user_id'])) {
+//     header("Location: projet.php");
+//     exit();
+// }
 
-$username = $_SESSION['username'];
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : "Invité";
 ?>
 <!DOCTYPE html>
 <html lang="fr"> 
@@ -28,7 +28,6 @@ $username = $_SESSION['username'];
 </head>
 <body>
 
-<!-- MENU-->
 <div class="sidebar">
 <h2>🎓 GESTION PRESENCE</h2>
 <ul> 
@@ -36,60 +35,21 @@ $username = $_SESSION['username'];
 <li><a href="nouvelle_session.php">📆 Nouvelle session</a></li>
 <li><a href="etudiants.php">👨‍🎓 Etudiants</a></li>
 <li><a href="rapports.php">📊 Rapports</a></li>
-<li><a href="parametres.php">⚙️ Paramètres</a></li>
+<li><a href="parametres.php">⚙ Paramètres</a></li>
 <li><a href="logout.php">🚪 Déconnexion</a></li>
 </ul>
 </div>
 
-<!-- CONTENU -->
 <div class="content"> 
 <h1>Tableau de bord</h1>
 <p>Bienvenue, <b><?php echo $username; ?></b> !</p>
+<p style="color:red;">MODE TEST : La vérification est désactivée</p>
 
 <div class="cards">
-    <div class="card"> 
-        <h2>24</h2>
-        <p>Etudiants presents</p>
-    </div>
-    <div class="card">
-        <h2>28</h2>
-        <p>Total étudiants</p>
-    </div>
-    <div class="card">
-        <h2>CS101</h2>
-        <p>Cours actuel</p>
-    </div>
-    <div class="card">
-        <h2>10:30</h2>
-        <p>Heure actuelle</p>
-    </div>
-</div>
-
-<div class="container"> 
-<div class="box"> 
-<h2>Session en Cours</h2>
-<p><b>cours :</b> Algorithimique et programmation</p>
-<br>
-<h3 style="text-align: center;">QR Code presence</h3>
-<div class="qr">📱</div>
-<center> 
-<button class="btn vert">Rafraichir QR</button>
-<button class="btn rouge">Terminer session</button>
-</center>
-</div>
-
-<div class="box"> 
-<h2>Etudiants présents</h2>
-<table>
-<tr> 
-<th>N°</th><th>Nom</th><th>Heure</th>
-</tr>
-<tr><td>1</td><td>Aurelie K.</td><td>10:05</td></tr>
-<tr><td>2</td><td>Patrick M.</td><td>10:08</td></tr>
-<tr><td>3</td><td>Grace B.</td><td>10:12</td></tr>
-<tr><td>4</td><td>Sarah K.</td><td>10:20</td></tr>
-</table>
-</div> 
+    <div class="card"> <h2>24</h2><p>Etudiants presents</p></div>
+    <div class="card"><h2>28</h2><p>Total étudiants</p></div>
+    <div class="card"><h2>CS101</h2><p>Cours actuel</p></div>
+    <div class="card"><h2>10:30</h2><p>Heure actuelle</p></div>
 </div>
 </div>
 </body>
