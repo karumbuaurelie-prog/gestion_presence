@@ -7,8 +7,8 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 }
 
 // SI PAS CONNECTE, ON RETOURNE AU LOGIN
-if (!isset($_SESSION['username'])) {
-    header("Location: projet.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
     exit();
 }
 
@@ -34,7 +34,7 @@ $username = $_SESSION['username'];
 <li><a href="nouvelle_session.php">📆 Nouvelle session</a></li>
 <li><a href="etudiants.php">👨‍🎓 Etudiants</a></li>
 <li><a href="rapports.php">📊 Rapports</a></li>
-<li><a href="parametres.php">⚙ Paramètres</a></li>
+<li><a href="parametres.php">⚙️ Paramètres</a></li>
 <li><a href="logout.php">🚪 Déconnexion</a></li>
 </ul>
 
@@ -44,6 +44,7 @@ $username = $_SESSION['username'];
 <div class="content"> 
 
 <h1>Tableau de bord</h1>
+<p>Bienvenue, <b><?php echo $username; ?></b> !</p>
 
 <div class="cards">
 
