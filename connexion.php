@@ -1,11 +1,13 @@
 <?php
-$host = $_ENV['MYSQLHOST'] ?? 'localhost';
-$user = $_ENV['MYSQLUSER'] ?? 'root';
-$password = $_ENV['MYSQLPASSWORD'] ?? '';
-$dbname = $_ENV['MYSQL_DATABASE'] ?? 'railway'; // <- AJOUTE LE _ ICI
-$port = $_ENV['MYSQLPORT'] ?? 3306;
+$url = parse_url($_ENV['MYSQL_URL']);
 
-$conn = new mysqli($host, $user, $password, $dbname, $port);
+$host = $url['host'];
+$user = $url['user'];
+$pass = $url['pass'];
+$db   = ltrim($url['path'], '/');
+$port = $url['port'];
+
+$conn = new mysqli($host, $user, $pass, $db, $port);
 
 if ($conn->connect_error) {
     die("Erreur de connexion: " . $conn->connect_error);
