@@ -1,15 +1,13 @@
 <?php
-$url = parse_url($_ENV['MYSQL_URL']);
+$host = $_ENV['MYSQLHOST'];
+$user = $_ENV['MYSQLUSER'];
+$pass = $_ENV['MYSQLPASSWORD'];
+$db   = $_ENV['MYSQLDATABASE'];
+$port = $_ENV['MYSQLPORT'];
 
-$host = $url['host'];
-$user = $url['user'];
-$pass = $url['pass'];
-$db   = ltrim($url['path'], '/');
-$port = $url['port'];
+$mysqli = new mysqli($host, $user, $pass, $db, $port);
 
-$conn = new mysqli($host, $user, $pass, $db, $port);
-
-if ($conn->connect_error) {
-    die("Erreur de connexion: " . $conn->connect_error);
+if ($mysqli->connect_error) {
+    die("Erreur connexion: " . $mysqli->connect_error);
 }
 ?>
