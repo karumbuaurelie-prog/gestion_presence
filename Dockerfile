@@ -1,10 +1,11 @@
 FROM php:8.2-apache
 
+# Installer mysqli
 RUN docker-php-ext-install mysqli pdo pdo_mysql
-RUN a2dismod mpm_event
-RUN a2enmod mpm_prefork
+
+# Forcer Apache à utiliser mpm_prefork et pas mpm_event
+RUN sed -i 's/mpm_event/mpm_prefork/g' /etc/apache2/apache2.conf
 
 COPY . /var/www/html/
 
 EXPOSE 80
-
