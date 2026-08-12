@@ -1,8 +1,0 @@
-[phases.setup]
-nixPkgs = ["php", "phpPackages.extensions.mysqli"]
-
-[phases.install]
-cmds = ["composer install"]
-
-[start]
-cmd = "php -S 0.0.0.0:$PORT -t."
